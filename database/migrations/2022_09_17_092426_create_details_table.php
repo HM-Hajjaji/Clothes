@@ -14,7 +14,9 @@ class CreateDetailsTable extends Migration
     public function up()
     {
         Schema::create('details', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('color');
+            $table->enum('size',['sm','md','lg','xl','xxl']);
             $table->timestamps();
         });
     }
