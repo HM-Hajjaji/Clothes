@@ -8,5 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AdminController::class)->prefix('admin')->group(function (){
     //dashboard
     Route::get('/dashboard','dashboard')->name('dashboard');
+    //profile
+    Route::get('/profile','profile')->middleware('auth')->name('admin-profile');
 });
 

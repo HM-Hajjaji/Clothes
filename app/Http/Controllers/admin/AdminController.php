@@ -16,4 +16,8 @@ class AdminController extends Controller
     {
         return view('dashboard');
     }
+    public function profile()
+    {
+        return view('');
+    }
 }

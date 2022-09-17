@@ -18,8 +18,6 @@ Route::controller(HomeContoller::class)->group(function (){
     //home
     Route::get('/','home')->name('home');
 
-    //profile
-    Route::get('/profile','profile')->middleware('auth')->name('profile');
 });
 
 require __DIR__.'/auth.php';

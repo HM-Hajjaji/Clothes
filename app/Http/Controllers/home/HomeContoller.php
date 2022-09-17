@@ -13,12 +13,8 @@ class HomeContoller extends Controller
         $admin_count = User::all()->where('role','admin')->count();
         if ($admin_count < 1)
         {
-            return redirect()->route('register');
+            return redirect()->route('admin-register');
         }
         return view('welcome');
-    }
-    public function profile()
-    {
-        return view('');
     }
 }
