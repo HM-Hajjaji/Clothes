@@ -29,6 +29,7 @@ class RegisteredAdminController extends Controller
             'sex'  => Str::ucfirst($request->sex),
             'password' => Hash::make($request->password),
             'photo'  => $request->photo,
+            'slug'  => Str::slug($request->name.Str::random(15)),
             'role'  => "admin"
         ]);
 
@@ -37,6 +38,7 @@ class RegisteredAdminController extends Controller
             'country' => Str::ucfirst($request->country),
             'phone'  => $request->phone,
             'city' => Str::ucfirst($request->city),
+            'slug'  => Str::slug($request->country.Str::random(15)),
             'address'  => Str::ucfirst($request->address),
             'code_postal' => $request->code_postal,
             'facebook'  => $request->facebook,

@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class,'user_id');
     }
+
+    public function getRouteKey()
+    {
+        return 'slug';
+    }
 }

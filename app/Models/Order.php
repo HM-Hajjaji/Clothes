@@ -25,4 +25,9 @@ class Order extends Model
     {
         return $this->hasMany(Detail_Order::class,'order_id');
     }
+
+    public function getRouteKey()
+    {
+        return 'slug';
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -31,6 +32,7 @@ class CategoryController extends Controller
             'title' => $request->title,
             'photo' => $request->photo,
             'parent_id' => $request->parent_id,
+            'slug'  => Str::slug($request->title.Str::random(15)),
         ]);
         return redirect()->route('');
     }

@@ -30,4 +30,9 @@ class Product extends Model
     {
         return $this->hasMany(Detail_Product::class,'product_id');
     }
+
+    public function getRouteKey()
+    {
+        return 'slug';
+    }
 }
