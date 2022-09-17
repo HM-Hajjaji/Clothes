@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    public static $ADMIN = '/dashboard';
+    public static $ADMIN = 'admin/dashboard';
 
     protected $fillable = [
         'name',
