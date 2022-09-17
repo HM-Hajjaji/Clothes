@@ -22,9 +22,9 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->text("address");
             $table->string('code_postal');
-            $table->string('facebook')->unique();
-            $table->string('twitter')->unique();
-            $table->string('instagram')->unique();
+            $table->string('facebook')->unique()->nullable();
+            $table->string('twitter')->unique()->nullable();
+            $table->string('instagram')->unique()->nullable();
             $table->timestamps();
         });
     }

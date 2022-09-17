@@ -18,13 +18,22 @@
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
+        {{--    <!-- Sex -->
+            <div>
+                <x-label for="male" :value="__('Male')" />
 
+                <x-input id="male" class="block mt-1 w-full" type="radio" name="sex" :value="male"/>
+
+                <x-label for="female" :value="__('Female')" />
+
+                <x-input id="female" class="block mt-1 w-full" type="radio" name="sex" :value="female"/>
+            </div>
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+            </div>--}}
 
             <!-- Password -->
             <div class="mt-4">
