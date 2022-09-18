@@ -10,9 +10,8 @@ class ImportPhoto
 {
     public static function photo($photo,$path,$w,$h)
     {
-        $phto_name = time()."_".Str::random(7).$photo->getClientOriginalName();
-        $logo = Image::make($photo)->resize($w,$h);
-        Storage::disk('public')->putFileAs($path,$logo->__toString(),$phto_name);
-        return $path.'/'.$phto_name;
+        $photo_name = time()."_".Str::random(7).$photo->getClientOriginalName();
+        $logo = Image::make($photo)->resize($w,$h)->save(public_path('storage/'.$path.'/'.$photo_name));
+        return $path.'/'.$photo_name;
     }
 }

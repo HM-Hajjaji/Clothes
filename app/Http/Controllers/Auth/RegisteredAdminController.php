@@ -19,7 +19,7 @@ class RegisteredAdminController extends Controller
 {
     public function create()
     {
-        return view('');
+        return view('admin-register');
     }
 
     public function store(StoreAdminRequest $request)
@@ -28,6 +28,7 @@ class RegisteredAdminController extends Controller
         if ($request->hasFile('photo'))
         {
             $path = ImportPhoto::photo($request->file('photo'),'Photos/Users',400,400);
+            /*$path = $request->file('photo')->storeAs('Photos/Users',$request->file('photo')->getClientOriginalName(),'public');*/
         }
         $user = User::create([
             'name' => Str::upper($request->name),
@@ -39,7 +40,7 @@ class RegisteredAdminController extends Controller
             'role'  => "admin"
         ]);
 
-        $address = Address::create([
+        $user->address()->create([
             'user_id' => $user->id,
             'country' => Str::ucfirst($request->country),
             'phone'  => $request->phone,
@@ -56,7 +57,7 @@ class RegisteredAdminController extends Controller
             'name_website' => Str::upper($user->name_website),
             'description' => Str::ucfirst($request->description),
             'logo'  => ImportPhoto::photo($request->file('logo'),'Photos/WebSite',400,400),
-            'favicon' => ImportPhoto::photo($request->file('favicon'),'Photos/Website',100,100),
+            'favicon' =>ImportPhoto::photo($request->file('favicon'),'Photos/WebSite',100,100),
             'email_website'  => Str::ucfirst($request->email_website),
             'phone_website' => $request->phone_website,
             'address_website'  => $request->address_website,
