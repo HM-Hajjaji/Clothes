@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\product\StoreProductRequest;
+use App\Http\Requests\product\UpdateProductRequest;
 use App\Http\Tools\ImportPhoto;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
