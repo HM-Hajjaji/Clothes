@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Tools\ImportPhoto;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -28,12 +29,14 @@ class CategoryController extends Controller
             'photo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
             'parent_id' => ['numeric'],
         ]);
+
         $category = Category::create([
             'title' => $request->title,
-            'photo' => $request->photo,
+            'photo' => ImportPhoto::photo($request->file('photo'),'Photos/Categorys',400,400),
             'parent_id' => $request->parent_id,
             'slug'  => Str::slug($request->title.Str::random(15)),
         ]);
+
         return redirect()->route('');
     }
 

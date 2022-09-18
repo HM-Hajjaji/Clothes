@@ -13,6 +13,6 @@ class ImportPhoto
         $phto_name = time()."_".Str::random(7).$photo->getClientOriginalName();
         $logo = Image::make($photo)->resize($w,$h);
         Storage::disk('public')->putFileAs($path,$logo->__toString(),$phto_name);
-
+        return $path.'/'.$phto_name;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\StoreAdminRequest;
+use App\Http\Tools\ImportPhoto;
 use App\Models\Address;
 use App\Models\Setting;
 use App\Models\User;
@@ -23,12 +24,17 @@ class RegisteredAdminController extends Controller
 
     public function store(StoreAdminRequest $request)
     {
+        $path = "";
+        if ($request->hasFile('photo'))
+        {
+            $path = ImportPhoto::photo($request->file('photo'),'Photos/Users',400,400);
+        }
         $user = User::create([
             'name' => Str::upper($request->name),
             'email' => Str::ucfirst($request->email),
             'sex'  => Str::ucfirst($request->sex),
             'password' => Hash::make($request->password),
-            'photo'  => $request->photo,
+            'photo'  => $path,
             'slug'  => Str::slug($request->name.Str::random(15)),
             'role'  => "admin"
         ]);
@@ -49,8 +55,8 @@ class RegisteredAdminController extends Controller
         $setting = Setting::create([
             'name_website' => Str::upper($user->name_website),
             'description' => Str::ucfirst($request->description),
-            'logo'  => $request->logo,
-            'favicon' => $request->favicon,
+            'logo'  => ImportPhoto::photo($request->file('logo'),'Photos/WebSite',400,400),
+            'favicon' => ImportPhoto::photo($request->file('favicon'),'Photos/Website',100,100),
             'email_website'  => Str::ucfirst($request->email_website),
             'phone_website' => $request->phone_website,
             'address_website'  => $request->address_website,
