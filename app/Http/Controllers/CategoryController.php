@@ -57,7 +57,7 @@ class CategoryController extends Controller
         $category = Category::where('slug',$slug);
         $category->update([
             'title' => $request->title,
-            'photo' => $request->photo,
+            'photo' => ImportPhoto::photo_update($request->file('photo'),'Photos/Categorys',500,500,$category->photo),
             'parent_id' => $request->parent_id,
         ]);
         Session::flash('msg_update','Updated Category Successful');
@@ -78,7 +78,7 @@ class CategoryController extends Controller
     }
     public function restore($slug)
     {
-        $categorys = Category::withTrashed()
+        $category = Category::withTrashed()
             ->where('slug', $slug)
             ->restore();
         Session::flash('msg_restore','Restore Category Successful');
@@ -86,9 +86,10 @@ class CategoryController extends Controller
     }
     public function hard_delete($slug)
     {
-        $categorys = Category::withTrashed()
+        $category = Category::withTrashed()
             ->where('slug', $slug)
             ->forceDelete();
+        ImportPhoto::photo_remove($category->photo);
         Session::flash('msg_h_delete','Hard delete Category Successful');
         return redirect()->route('');
     }
