@@ -15,6 +15,6 @@ class HomeContoller extends Controller
         {
             return redirect()->route('admin-register');
         }
-        return view('welcome');
+        return view('dashboard');
     }
 }
